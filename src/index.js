@@ -22,7 +22,7 @@ const TodoList = () => {
 }
 const AppHeader = () => {
   return (
-    <h1>My todo List</h1>
+    <h1>My todo List for</h1>
   )
 }
 const SearchPanel = () => {
