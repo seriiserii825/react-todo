@@ -27,8 +27,13 @@ const AppHeader = () => {
 }
 const SearchPanel = () => {
   const searchText = 'Type here to search';
+  const searchStyle = {
+    fontSize: "20px",
+    border: "1px solid green",
+    boxShadow: "0 2px 4px rgba(0,0,0,.4)"
+  };
   return (
-    <input className="some" type="text" placeholder={searchText}/>
+    <input className="some" style={searchStyle} type="text" placeholder={searchText}/>
   )
 }
 ReactDOM.render(
