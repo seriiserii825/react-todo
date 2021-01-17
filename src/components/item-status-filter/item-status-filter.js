@@ -1,12 +1,14 @@
 import React from "react";
+import './item-status-filter.scss';
 
-const ItemStatusFilter = () => {
-  return (
-    <div className="btn-group">
-      <button className="btn btn-info">All</button>
-      <button className="btn btn-outline-secondary">Active</button>
-      <button className="btn btn-outline-secondary">Done</button>
-    </div>
-  );
-};
-export default ItemStatusFilter;
+export default class ItemStatusFilter extends React.Component {
+  render () {
+    return (
+      <div className="btn-group item-status-filter">
+        <button className="btn btn-info btn--active">All</button>
+        <button className="btn btn-outline-secondary">Active</button>
+        <button className="btn btn-outline-secondary">Done</button>
+      </div>
+    );
+  }
+}

@@ -1,0 +1,33 @@
+.todo-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.todo-list-item .btn {
+  margin-left: 5px;
+}
+.todo-list-item .btn-outline-success {
+  margin-left: auto;
+}
+.todo-list-item .btn {
+  border: 1px solid #ccc;
+  transition: all .4s;
+  cursor: pointer;
+  &.btn--important {
+    color: green;
+    border-color: green;
+    &:hover {
+      color: white;
+      background-color: green;
+    }
+  }
+  &.btn--delete {
+    color: red;
+    border-color: red;
+    &:hover {
+      color: white;
+      background-color: red;
+    }
+  }
+}

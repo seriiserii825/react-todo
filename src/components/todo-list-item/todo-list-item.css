@@ -10,3 +10,6 @@
 .todo-list-item .btn-outline-success {
 	margin-left: auto;
 }
+.todo-list-item .btn {
+	border: 1px solid #ccc;
+}
