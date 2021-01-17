@@ -1,6 +1,7 @@
 import React from "react";
 import AppHeader from "../app-header/app-header";
 import TodoList from "../todo-list/todo-list";
+import AddTodo from "../add-todo/add-todo";
 import './app.scss';
 
 export default class App extends React.Component {
@@ -20,14 +21,28 @@ export default class App extends React.Component {
       };
     });
   }
+  addItem = (text) => {
+    const id = Math.floor(Math.random() * 100);
+    const item = {id: id, label: text, important: false}
+    this.setState(({todoData}) => {
+      const newArr = [...todoData, item];
+      return {
+        todoData: newArr
+      }
+    });
+  }
   
   render () {
     return (
       <div className="app">
-        <AppHeader todo={3} done={2}/> <TodoList
-        todos={this.state.todoData}
-        onDeleted={this.deleteItem}
-      />
+        <AppHeader todo={3} done={2}/>
+        <hr/>
+        <TodoList
+          todos={this.state.todoData}
+          onDeleted={this.deleteItem}
+        />
+        <hr/>
+        <AddTodo onAdd={this.addItem}/>
       </div>
     )
   }
