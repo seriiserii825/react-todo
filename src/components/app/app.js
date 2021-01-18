@@ -22,7 +22,7 @@ export default class App extends React.Component {
     });
   }
   addItem = (text) => {
-    const id = Math.floor(Math.random() * 100);
+    const id = Math.floor(Math.random() * 100000);
     const item = {id: id, label: text, important: false}
     this.setState(({todoData}) => {
       const newArr = [...todoData, item];
