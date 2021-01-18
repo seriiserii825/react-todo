@@ -7,11 +7,17 @@ import './app.scss';
 export default class App extends React.Component {
   state = {
     todoData: [
-      {id: 1, label: 'Drink coffee', important: false},
-      {id: 2, label: 'Make awesome app', important: true},
-      {id: 3, label: 'Have a lunch', important: false}
+      this.createItem('First app'),
+      this.createItem('Wordpress is good'),
+      this.createItem('My first app')
     ]
   }
+  
+  createItem (text) {
+    const id = Math.floor(Math.random() * 100000);
+    return {id, label: text, important: false, done: false};
+  }
+  
   deleteItem = (id) => {
     this.setState(({todoData}) => {
       const idx = todoData.findIndex((el) => el.id === id);
@@ -22,8 +28,7 @@ export default class App extends React.Component {
     });
   }
   addItem = (text) => {
-    const id = Math.floor(Math.random() * 100000);
-    const item = {id: id, label: text, important: false}
+    const item = this.createItem(text);
     this.setState(({todoData}) => {
       const newArr = [...todoData, item];
       return {
@@ -32,14 +37,43 @@ export default class App extends React.Component {
     });
   }
   
+  setProperty (arr, id, propName) {
+    const idx = arr.findIndex(el => el.id === id);
+    const oldItem = arr[idx];
+    console.log(oldItem);
+    const newItem = {...oldItem, [propName]: !oldItem[propName]};
+    console.log(newItem);
+    return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
+  }
+  
+  onToggleDone = (id) => {
+    this.setState(({todoData}) => {
+      return {
+        todoData: this.setProperty(todoData, id, 'done')
+      };
+    });
+  }
+  onToggleImportant = (id) => {
+    this.setState(({todoData}) => {
+      return {
+        todoData: this.setProperty(todoData, id, 'important')
+      };
+    });
+  }
+  
   render () {
+    const {todoData} = this.state;
+    const doneCount = todoData.filter(item => item.done).length;
+    const todoCount = todoData.length - doneCount;
     return (
       <div className="app">
-        <AppHeader todo={3} done={2}/>
+        <AppHeader todo={todoCount} done={doneCount}/>
         <hr/>
         <TodoList
           todos={this.state.todoData}
           onDeleted={this.deleteItem}
+          onToggleImportant={this.onToggleImportant}
+          onToggleDone={this.onToggleDone}
         />
         <hr/>
         <AddTodo onAdd={this.addItem}/>
