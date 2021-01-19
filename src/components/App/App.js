@@ -34,8 +34,19 @@ class App extends Component {
   }
   onRemoveItem = (id) => {
     const {todoItems} = this.state;
-    const idx = todoItems.findIndex(el => el.id = id);
+    const idx = todoItems.findIndex(el => el.id === id);
     const newArray = [...todoItems.slice(0, idx), ...todoItems.slice(idx + 1)];
+    this.setState(({todoItems}) => {
+      return {
+        todoItems: newArray
+      };
+    });
+  }
+  onToggleDone = (id) => {
+    const {todoItems} = this.state;
+    const idx = todoItems.findIndex(el => el.id === id);
+    const oldItem = todoItems[idx];
+    const newArray = [...todoItems.slice(0, idx), {...oldItem, done: !oldItem.done}, ...todoItems.slice(idx + 1)];
     this.setState(({todoItems}) => {
       return {
         todoItems: newArray
@@ -48,7 +59,7 @@ class App extends Component {
       <div className="app">
         <Header/>
         <hr/>
-        <List onRemoveItem={this.onRemoveItem} list={this.state.todoItems}/>
+        <List onToggleDone={this.onToggleDone} onRemoveItem={this.onRemoveItem} list={this.state.todoItems}/>
         <hr/>
         <AddItem onAdd={this.onAddItem}/>
       </div>

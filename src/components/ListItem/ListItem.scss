@@ -10,6 +10,9 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  &-title {
+    display: block;
+  }
 }
 /* Установить все нечетные элементы списка в другой цвет (зебра) */
 .list__item:nth-child(odd) {
@@ -50,6 +53,7 @@
   height: 100%;
   opacity: .2;
   transition: all .2s;
+  background-color: pink;
 }
 .close:hover {
   background-color: #f44336;
