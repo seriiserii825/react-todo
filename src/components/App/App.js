@@ -13,8 +13,12 @@ class App extends Component {
       this.createTodo('Buy coffee'),
       this.createTodo('Buy ciocolate'),
       this.createTodo('Buy ice cream')
-    ]
+    ],
+    term: ''
   };
+  onSearch = (term) => {
+    this.setState({term});
+  }
   
   createTodo (text) {
     const id = this.idCounter++;
@@ -54,12 +58,20 @@ class App extends Component {
     });
   }
   
+  search (term) {
+    if (term.length === 0) {
+      return this.state.todoItems;
+    }
+    return this.state.todoItems.filter(item => item.title.toLowerCase().indexOf(term.toLowerCase()) > -1);
+  }
+  
   render () {
+    const visibleItems = this.search(this.state.term);
     return (
       <div className="app">
-        <Header/>
+        <Header onSearch={this.onSearch}/>
         <hr/>
-        <List onToggleDone={this.onToggleDone} onRemoveItem={this.onRemoveItem} list={this.state.todoItems}/>
+        <List onToggleDone={this.onToggleDone} onRemoveItem={this.onRemoveItem} list={visibleItems}/>
         <hr/>
         <AddItem onAdd={this.onAddItem}/>
       </div>
