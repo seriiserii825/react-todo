@@ -32,13 +32,18 @@ class App extends Component {
       };
     });
   }
-  
   onRemoveItem = (id) => {
-    console.log(id);
+    const {todoItems} = this.state;
+    const idx = todoItems.findIndex(el => el.id = id);
+    const newArray = [...todoItems.slice(0, idx), ...todoItems.slice(idx + 1)];
+    this.setState(({todoItems}) => {
+      return {
+        todoItems: newArray
+      };
+    });
   }
   
   render () {
-    console.log(this.state);
     return (
       <div className="app">
         <Header/>

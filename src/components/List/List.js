@@ -5,11 +5,11 @@ import './List.scss';
 const List = ({list, onRemoveItem}) => {
   const todoItems = list.map(({id, title, done}) => {
     return (
-      <ListItem title={title} done={done} id={id} key={id}>{title}</ListItem>
+      <ListItem onRemoveItem={onRemoveItem} title={title} done={done} id={id} key={id}>{title}</ListItem>
     );
   });
   return (
-    <ul onRemoveItem={onRemoveItem} className="list">
+    <ul className="list">
       {todoItems}
     </ul>
   );
