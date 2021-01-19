@@ -33,13 +33,17 @@ class App extends Component {
     });
   }
   
+  onRemoveItem = (id) => {
+    console.log(id);
+  }
+  
   render () {
     console.log(this.state);
     return (
       <div className="app">
         <Header/>
         <hr/>
-        <List list={this.state.todoItems}/>
+        <List onRemoveItem={this.onRemoveItem} list={this.state.todoItems}/>
         <hr/>
         <AddItem onAdd={this.onAddItem}/>
       </div>
