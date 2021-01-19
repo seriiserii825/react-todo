@@ -5,6 +5,7 @@ import List from "../List/List";
 import AddItem from "../AddItem/AddItem";
 
 class App extends Component {
+  idCounter = 10
   state = {
     todoItems: [
       this.createTodo('Todo something'),
@@ -12,29 +13,28 @@ class App extends Component {
       this.createTodo('Buy coffee'),
       this.createTodo('Buy ciocolate'),
       this.createTodo('Buy ice cream')
-    ],
-    idCounter: 10
+    ]
   };
-  updateIdCounter = () => {
-    this.setState(({idCounter}) => {
-      return {
-        idCounter: this.state.idCounter
-      };
-    });
-  }
   
-  createTodo = (text) => {
-    console.log(this.state);
-    return {id: 10, title: text, done: false};
+  createTodo (text) {
+    const id = this.idCounter++;
+    return {id, title: text, done: false};
   }
   
   onAddItem (text) {
     if (text.length === 0) {
       alert('Enter a todo title');
     }
+    this.setState(({todoItems}) => {
+      const newItem = this.createTodo(text);
+      return {
+        todoItems: [...this.state.todoItems, newItem]
+      };
+    });
   }
   
   render () {
+    console.log(this.state);
     return (
       <div className="app">
         <Header/>
