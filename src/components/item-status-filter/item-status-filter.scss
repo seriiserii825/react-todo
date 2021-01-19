@@ -1,0 +1,9 @@
+.item-status-filter {
+  display: flex;
+  .btn {
+    &:active,
+    &:focus {
+      outline: none;
+    }
+  }
+}

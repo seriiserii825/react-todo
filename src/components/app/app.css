@@ -1,0 +1,8 @@
+.app {
+	border-bottom: 1px solid #ccc;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
