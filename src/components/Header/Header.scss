@@ -1,0 +1,18 @@
+.header {
+  background-color: #f44336;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+  &__wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  input {
+    width: 60%;
+  }
+  .btn {
+    width: 25%;
+  }
+}

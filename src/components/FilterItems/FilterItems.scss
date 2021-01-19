@@ -1,0 +1,10 @@
+.filter-items {
+  .btn {
+	transition: all .4s;
+	border: 1px solid #f1f1f1;
+	&.active {
+	  color: white;
+	  background-color: lightseagreen;
+	}
+  }
+}
