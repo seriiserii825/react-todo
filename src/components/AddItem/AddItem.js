@@ -13,6 +13,9 @@ export default class AddItem extends React.Component {
   submitTodo = (e) => {
     e.preventDefault();
     this.props.onAdd(this.state.inputValue)
+    this.setState({
+      inputValue: ''
+    });
   }
   
   render () {
@@ -24,6 +27,7 @@ export default class AddItem extends React.Component {
             type="text"
             placeholder="Type to search..."
             onChange={this.setInputValue}
+            value={this.state.inputValue}
           />
           <button className="btn">Add new todo</button>
         </div>

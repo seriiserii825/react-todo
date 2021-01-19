@@ -21,12 +21,12 @@ class App extends Component {
     return {id, title: text, done: false};
   }
   
-  onAddItem (text) {
+  onAddItem = (text) => {
     if (text.length === 0) {
       alert('Enter a todo title');
     }
+    const newItem = this.createTodo(text);
     this.setState(({todoItems}) => {
-      const newItem = this.createTodo(text);
       return {
         todoItems: [...this.state.todoItems, newItem]
       };
